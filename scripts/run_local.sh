@@ -40,6 +40,7 @@ export OMPI_MCA_mpi_warn_on_fork=false
 
 export PYTHONPATH=$PYTHONPATH:/<PATH_2_PROJECT>/SAR-W-MixMAE
 export PYTHONPATH=$PYTHONPATH:/<PATH_2_PROJECT>/SAR-W-MixMAE/util
+export PYTHONPATH=$PYTHONPATH:/<PATH_2_PROJECT>/SAR-W-MixMAE/sarwmix
 
 export MASTER_ADDR=$(hostname)  # Use localhost or the hostname of the machine
 export MASTER_PORT=29500       # You can change this port number if necessary
