@@ -12,6 +12,5 @@ Attribution & SPDX:
 - All files originating from MixMIM are tagged with SPDX: NOASSERTION and include a
   header indicating redistribution with permission and (where applicable) modification.
 - Original files in the `sarwmix/` package and in `scripts/` and `datasets/` are MIT.
-- If any headers reference facebookresearch/mae, those portions are CC-BY-NC-4.0.
 
 See THIRD_PARTY.md for an exact file-by-file mapping and license status.
