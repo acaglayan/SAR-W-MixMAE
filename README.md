@@ -89,12 +89,32 @@ pip install -r requirements.txt
 ---
 
 ## Training
+**Launcher:** `mpirun` (OpenMPI) + NCCL backend. See the sections below for the exact commands we use on ABCI and on a local 2‑GPU machine. For all options, run:
+```bash
+python main_pretrain.py -h
+python main_finetune.py -h
+```
 
-> Use `torchrun` for both single‑ and multi‑GPU. Inspect `python main_pretrain.py -h` and `python main_finetune.py -h` for full options.
+---
+### Self-supervised pretraining
+**Hardware / node**
+- **Cluster:** ABCI (single node)
+- **GPUs:** 8 × NVIDIA **H200** (script also handles V100=4 GPUs, A100=8)
+- **CPU:** `#PBS -l select=1:ncpus=192`
+
+**Distributed launch**
+- We use **MPI** (`mpirun`) to spawn one Python process per GPU and **NCCL** for the backend.
+- GPU count and hosts are inferred from `nvidia-smi` and `$PBS_NODEFILE`.
+
+**Batch / schedule**
+- **Per-GPU batch:** `256` → **Global batch:** `256 × 8 = 2048`
+- Planned **1024** epochs with **40** warmup; we **cut at epoch 64** (intentional cut) and released that checkpoint (`checkpoint_64.pth`). The finetuning and evaluation below use `checkpoint_64.pth`.
+
 
 > **Note**: The polarization‑aware weighting for reconstruction is used during pretraining.
 
----
+### Finetuning
+Per-GPU batch `128` (global `128 × 8 GPUs = 1024`), 50 epochs
 
 ## Checkpoints
 Release artifacts (pretrained weights and fine‑tuned heads) will be added as GitHub Releases.
