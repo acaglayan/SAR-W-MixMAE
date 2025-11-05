@@ -23,9 +23,9 @@ module load nccl/2.23/2.23.4-1
 source /home/<USER_ID>/.bashrc
 source /home/<USER_ID>/anaconda3/bin/activate /home/<USER_ID>/anaconda3/envs/sarwmix
 
-TASK_TYPE=${TASK_TYPE:-test}  # can be "pretrain", "finetune", "test"
+TASK_TYPE=${TASK_TYPE:-pretrain}  # can be "pretrain", "finetune", "test"
 EPOCH=${EPOCH:-64}
-MODEL=${MODEL:-huge}  # can be "base", "large", "huge"	${MODEL:-base}
+MODEL=${MODEL:-base}  # can be "base", "large", "huge"	${MODEL:-base}
 ABLATION="${MODEL}_${EPOCH}"
 
 cd $PBS_O_WORKDIR
