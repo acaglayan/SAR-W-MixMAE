@@ -36,7 +36,7 @@ DATESTAMP=$(date +'%Y-%m-%d-%H-%M-%S')
 
 # Directories for storing logs, models, checkpoints, etc.
 MODELs_PATH="/<PATH_FOR_SAVING_MODELS>"
-
+DATA_PATH="/<PATH_FOR_DATASET>"
 
 # detect GPU type, V100 or A100 or H200
 #GPU_INFO=$(nvidia-smi --query-gpu=gpu_name --format=csv)
@@ -67,9 +67,12 @@ echo "NUM_GPU = ${NUM_GPU}"
 # MPI options
 MPIOPTS="-np $NUM_GPU -N ${NUM_GPUS_PER_NODE} -x MASTER_ADDR=${HOSTNAME} -hostfile $PBS_NODEFILE"
 
-cd /home/<USER_ID>/Works/SAR-W-MixMAE/
+WORK_PATH=/home/<USER_ID>/Works/SAR-W-MixMAE-main
+cd $WORK_PATH
 
-work_path=/home/<USER_ID>/Works/SAR-W-MixMAE/
+export PYTHONPATH=$PYTHONPATH:$WORK_PATH
+export PYTHONPATH=$PYTHONPATH:$WORK_PATH/util
+export PYTHONPATH=$PYTHONPATH:$WORK_PATH/sarwmix
 
 # Command depending on the task
 if [ "$TASK_TYPE" == "pretrain" ]; then
@@ -84,6 +87,7 @@ if [ "$TASK_TYPE" == "pretrain" ]; then
         --accum_iter 1 \
         --warmup_epochs 40 \
         --blr 1.5e-4 --weight_decay 0.05 \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE \
         --log_dir $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE/log \
         --resume $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE/checkpoint.pth >> $LOG_FILE 2>&1
@@ -99,6 +103,7 @@ elif [ "$TASK_TYPE" == "finetune" ]; then
         --blr 5e-4 --layer_decay 0.7 \
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/log \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint.pth \
@@ -117,6 +122,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best.pth \
@@ -131,6 +137,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best_mbr.pth \
@@ -145,6 +152,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best_default.pth \
