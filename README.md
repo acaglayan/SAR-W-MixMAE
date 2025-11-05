@@ -33,7 +33,7 @@ SAR-W-MixMAE/
 
   scripts/                  # training/eval scripts for local environment and ABCI server environment (MIT)
   datasets/                 # CSVs/splits as needed (MIT)
-  LICENSES/                 # MIT.txt, CC-BY-NC-4.0.txt, NOASSERTION.txt
+  LICENSES/                 # MIT.txt, NOASSERTION.txt
   NOTICE                    # provenance + permission note
   THIRD_PARTY.md            # file-by-file mapping table
   CITATION.cff
@@ -97,7 +97,8 @@ pip install -r requirements.txt
 ---
 
 ## Checkpoints
-Release artifacts (pretrained weights and fine‑tuned heads) will be added as GitHub Releases. After uploading, update this section with links and example `--finetune` usage.
+Release artifacts (pretrained weights and fine‑tuned heads) will be added as GitHub Releases.
+TODO: After uploading, update this section with links and example `--finetune` usage.
 
 ---
 
@@ -109,6 +110,6 @@ If you find this work useful, please cite the paper (see `CITATION.cff`).
 ## License & Provenance
 - **Original files** in `sarwmix/`, `scripts/`, `datasets/` → **MIT** (see `LICENSES/MIT.txt`).  
 - **Upstream MixMIM/MixMAE files** (verbatim or modified) in `util/` and selected top‑level `main_*.py`, `engine_*.py`, `models_*.py` → **SPDX: NOASSERTION**, redistributed with **written permission (2025‑10‑15)**. See `NOTICE` and `THIRD_PARTY.md`.
-- If any code is directly borrowed from **facebookresearch/mae**, treat it as **CC‑BY‑NC‑4.0** and keep headers (see `LICENSES/CC-BY-NC-4.0.txt`).
+- **Upstream:** This repo is based on MixMIM/MixMAE (SenseTime). We did not use code from facebookresearch/mae; MAE is cited as prior work only.
 
 See `NOTICE` for the permission note and `THIRD_PARTY.md` for the file‑by‑file mapping.
