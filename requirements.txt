@@ -1,0 +1,22 @@
+# PyTorch/torchvision are intentionally not pinned here; install them first for your CUDA:
+#   pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+
+# Core
+numpy>=1.26
+scipy>=1.11
+tqdm>=4.66
+pandas>=2.0
+matplotlib>=3.8
+
+# Vision / training utilities
+timm==0.5.4
+torchmetrics>=1.4.0
+tabulate>=0.9.0
+tensorboard>=2.14
+
+# Geo / data IO
+rasterio>=1.3
+zarr>=2.16.1
+
+# used by some upstream utilities
+fvcore>=0.1.5

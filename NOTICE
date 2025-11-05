@@ -1,0 +1,17 @@
+SAR-W-MixMAE — NOTICE
+
+This repository includes files redistributed from the MixMIM project (SenseTime).
+The authors of MixMIM granted written permission on 2025-10-15 to include a subset
+of their files in this public repository, some verbatim and some with modifications.
+
+Permission summary (verbatim from the authors’ reply):
+“Glad to see that our work is helpful to your work. Please feel free to use our code,
+e.g., like the solution you proposed.”
+
+Attribution & SPDX:
+- All files originating from MixMIM are tagged with SPDX: NOASSERTION and include a
+  header indicating redistribution with permission and (where applicable) modification.
+- Original files in the `sarwmix/` package and in `scripts/` and `datasets/` are MIT.
+- If any headers reference facebookresearch/mae, those portions are CC-BY-NC-4.0.
+
+See THIRD_PARTY.md for an exact file-by-file mapping and license status.
