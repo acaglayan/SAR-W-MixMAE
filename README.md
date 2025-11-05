@@ -113,3 +113,6 @@ If you find this work useful, please cite the paper (see `CITATION.cff`).
 - **Upstream:** This repo is based on MixMIM/MixMAE (SenseTime). We did not use code from facebookresearch/mae; MAE is cited as prior work only.
 
 See `NOTICE` for the permission note and `THIRD_PARTY.md` for the file‑by‑file mapping.
+
+## References (background only):
+MAE (He et al.), MixMAE/MixMIM (Li et al.), Swin Transformer (Liu et al.), BEiT (Bao et al.). We cite these as prior work; our code is based only MixMIM here, under explicit permission. We credit all these works and thank the authors.
