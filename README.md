@@ -27,7 +27,6 @@ SAR-W-MixMAE/
     datasets.py (verbatim), crop.py (verbatim), misc.py (modified), README.md
 
   sarwmix/                  # all original utilities — MIT
-    __init__.py
     bigearthnetv1.py, bigearthnetv2.py, helper.py,
     sen12_clean_data.py, sen12_data_alignment.py, sen12_data_prep.py,
     sen12_dataset_utils.py, sen12flood_loader.py, weighting.py
