@@ -1,0 +1,13 @@
+NOASSERTION
+
+This repository marks certain files with SPDX: NOASSERTION. This indicates
+that no standard open-source license is asserted for those files. Their
+inclusion here is covered by *written permission* from the original authors
+dated 2025-10-15 (see NOTICE). Headers on each such file state:
+
+  Redistributed with permission (2025-10-15). See NOTICE.
+  SPDX-License-Identifier: NOASSERTION
+
+You may read and use these files under the terms permitted by the original
+authors’ permission. They are **not** covered by the MIT license that applies
+to the original files in this repository.
