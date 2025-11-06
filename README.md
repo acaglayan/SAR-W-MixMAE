@@ -130,7 +130,6 @@ If you find this work useful, please cite the paper (see `CITATION.cff`).
 ## License & Provenance
 - **Original files** in `sarwmix/`, `scripts/`, `datasets/` → **MIT** (see `LICENSES/MIT.txt`).  
 - **Upstream MixMIM/MixMAE files** (verbatim or modified) in `util/` and selected top‑level `main_*.py`, `engine_*.py`, `models_*.py` → **SPDX: NOASSERTION**, redistributed with **written permission (2025‑10‑15)**. See `NOTICE` and `THIRD_PARTY.md`.
-- **Upstream:** This repo is based on MixMIM/MixMAE (SenseTime). We did not use code from facebookresearch/mae; MAE is cited as prior work only.
 
 See `NOTICE` for the permission note and `THIRD_PARTY.md` for the file‑by‑file mapping.
 
