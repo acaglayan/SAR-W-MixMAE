@@ -17,6 +17,7 @@ ABLATION="${MODEL}_${EPOCH}"
 WORKDIR=${PBS_O_WORKDIR:-/<PATH_2_PROJECT>/SAR-W-MixMAE}
 # Directories for storing logs, models, checkpoints, etc.
 MODELs_PATH="/<PATH_FOR_SAVING_MODELS>"
+DATA_PATH="/<PATH_FOR_DATASET>"
 
 cd "$WORKDIR"
 
@@ -63,6 +64,7 @@ if [ "$TASK_TYPE" == "pretrain" ]; then
         --accum_iter 1 \
         --warmup_epochs 40 \
         --blr 1.5e-4 --weight_decay 0.05 \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE \
         --log_dir $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE/log \
         --resume $MODELs_PATH/PRETr_CKPTs_LOGs/$PT_TYPE/checkpoint.pth | tee -a $LOG_FILE
@@ -78,6 +80,7 @@ elif [ "$TASK_TYPE" == "finetune" ]; then
         --blr 5e-4 --layer_decay 0.7 \
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/log \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint.pth \
@@ -96,6 +99,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best.pth \
@@ -110,6 +114,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best_mbr.pth \
@@ -124,6 +129,7 @@ elif [ "$TASK_TYPE" == "test" ]; then
         --weight_decay 0.05 --drop_path 0.1 --reprob 0.25 \
         --eval \
         --dist_eval \
+        --data_path $DATA_PATH \
         --output_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --log_dir $MODELs_PATH/TESTS/$PT_TYPE/$ABLATION \
         --resume $MODELs_PATH/FT_CKPTs_LOGs/$PT_TYPE/$ABLATION/checkpoint_best_default.pth \
