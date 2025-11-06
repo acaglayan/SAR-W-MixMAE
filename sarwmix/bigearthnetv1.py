@@ -10,6 +10,7 @@ import csv, json
 from collections import OrderedDict
 from typing import Optional, Sequence, Tuple
 import numpy as np
+from pathlib import Path
 import torch
 from torch.utils.data import dataset, DataLoader
 import zarr
@@ -21,11 +22,11 @@ class BigEarthNetv1(dataset.Dataset):
     def __init__(
         self,
         zarr_path: str,
-        csv_paths: Sequence[str],
+        csv_path: Sequence[str],
         transform=None,
         weight_mode: Optional[str] = "per_channel",  # 'per_channel' | 'shared' | None
         exp_scale: float = 1.0,
-        label_json: str = "../datasets/label_indices.json",
+        label_json: str = "datasets/label_indices.json",
         id_col: int = 1,  # S1 id column index in CSV
     ):
         super().__init__()
@@ -36,10 +37,20 @@ class BigEarthNetv1(dataset.Dataset):
         self.weight_mode = weight_mode
         self.exp_scale = exp_scale
         self.id_col = id_col
+        
+        # resolve the label_json path dynamically relative to the project root
+        project_root = Path(__file__).resolve().parent.parent  # goes up two levels from the current file location
+        label_json_path = project_root / label_json  # construct the absolute path to the label JSON
+        
+         # Check if the file exists
+        if not label_json_path.exists():
+            raise FileNotFoundError(f"The file {label_json_path} does not exist.")
+        
+        print(f"Resolved label_json_path: {label_json_path}")  # Debugging print
 
         # collect sample ids from CSVs
         self.samples = []
-        for p in csv_paths:
+        for p in csv_path:
             with open(p, "r", newline="") as f:
                 r = csv.reader(f)
                 for row in r:
@@ -47,7 +58,7 @@ class BigEarthNetv1(dataset.Dataset):
                         continue
                     self.samples.append(row[self.id_col])
 
-        with open(label_json, "r", encoding="utf-8") as f:
+        with open(label_json_path, "r", encoding="utf-8") as f:
             label_data = json.load(f)
         self.original_labels = label_data["original_labels"]           # str -> int (original idx)
         self.label_conversion = label_data["label_conversion"]         # list[list[int]] original->BE19 groups
