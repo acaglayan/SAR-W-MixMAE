@@ -78,6 +78,7 @@ pip install -r requirements.txt
 ### BigEarthNet‑v1 (BENv1)
 - Legacy support; some loaders expect **Zarr** containers.
 - Use `sarwmix/bigearthnetv1.py` and train/val/test splits together with labels in `datasets/`.
+- **Migration guide:** see [README_benv1.md](README_benv1.md).
 
 ### SEN12‑FLOOD (fine‑tuning only)
 - Finetune with inputs in **dB** (log10), but compute polarization weights in **linear**.
@@ -123,15 +124,15 @@ TODO: After uploading, update this section with links and example `--finetune` u
 ---
 
 ## Citation
-If you find this work useful, please cite the paper (see `CITATION.cff`).
+If you find this work useful, please cite the paper (see [`CITATION.cff`](`CITATION.cff`)).
 
 ---
 
 ## License & Provenance
-- **Original files** in `sarwmix/`, `scripts/`, `datasets/` → **MIT** (see `LICENSES/MIT.txt`).  
+- **Original files** in `sarwmix/`, `scripts/`, `datasets/` → **MIT** (see [`LICENSES/MIT.txt`](LICENSES/MIT.txt)).  
 - **Upstream MixMIM/MixMAE files** (verbatim or modified) in `util/` and selected top‑level `main_*.py`, `engine_*.py`, `models_*.py` → **SPDX: NOASSERTION**, redistributed with **written permission (2025‑10‑15)**. See `NOTICE` and `THIRD_PARTY.md`.
 
-See `NOTICE` for the permission note and `THIRD_PARTY.md` for the file‑by‑file mapping.
+See [`NOTICE`](NOTICE) for the permission note and [`THIRD_PARTY.md`](THIRD_PARTY.md) for the file‑by‑file mapping.
 
 ## References (background only):
 MAE (He et al.), MixMAE/MixMIM (Li et al.), Swin Transformer (Liu et al.), BEiT (Bao et al.). We cite these as prior work; our code is based only MixMIM here, under explicit permission. We credit all these works and thank the authors.
