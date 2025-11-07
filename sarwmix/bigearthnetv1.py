@@ -45,8 +45,6 @@ class BigEarthNetv1(dataset.Dataset):
          # Check if the file exists
         if not label_json_path.exists():
             raise FileNotFoundError(f"The file {label_json_path} does not exist.")
-        
-        print(f"Resolved label_json_path: {label_json_path}")  # Debugging print
 
         # collect sample ids from CSVs
         self.samples = []
@@ -106,5 +104,6 @@ class BigEarthNetv1(dataset.Dataset):
 
         labels = self._labels_from_attrs(pid)  # (19,)
         return sar_data, labels, weights
+
 
 
