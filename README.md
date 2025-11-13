@@ -165,9 +165,7 @@ Per-GPU batch `128` (global `128 × 8 GPUs = 1024`), 50 epochs
 > - For reproducibility, verify the SHA-256 hashes after download.
 > - For SEN12FLOOD, we *initialize* from `benv1_pretrain_checkpoint_64.pth`. See `README_sen12.md`.
 
-### (Optional) Verify Integrity
-
-**Linux / WSL (recommended):**
+### Verify Integrity
 ```bash
 # verify all files listed in CHECKSUMS.txt (OK / FAILED)
 sha256sum -c CHECKSUMS.txt --ignore-missing
