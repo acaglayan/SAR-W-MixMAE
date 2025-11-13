@@ -14,6 +14,8 @@ It builds on MixMIM/MixMAE with a Swin backbone and adds **polarization-aware re
 
 **Domain policy:** inputs to the encoder are **in dB**, while weighting is computed **in linear** for consistency with the physical backscatter scale.
 
+![Overview of the SAR-W-MixMAE](figures/overview.png)
+
 ## Highlights
 - Swin + MixMIM/MixMAE pretraining with mask ratio `r = 0.5`, input `2×128×128 (VH, VV)`.
 - Polarization‑aware pixel weights → aggregated token weights for reconstruction MSE.
