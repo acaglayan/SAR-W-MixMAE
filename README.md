@@ -1,9 +1,18 @@
 # SAR-W-MixMAE: Polarization‑Aware Self‑Supervised Pretraining for Masked Autoencoders on SAR Data
 
 This repository contains the code for the paper **“SAR-W-MixMAE: Polarization‑Aware Self‑Supervised Pretraining for Masked Autoencoders on SAR Data.”**  
-It builds on MixMIM/MixMAE with a Swin backbone and introduces **per‑pixel polarization‑aware weighting** in the reconstruction loss.
+It builds on MixMIM/MixMAE with a Swin backbone and adds **polarization-aware reconstruction weighting**.
 
-**Key idea — per‑channel weighting**: VH and VV are normalized **in linear scale**, transformed via `exp(1 − norm)`, aggregated to token weights, and applied to per‑token MSE. Inputs to the encoder are in **dB**, while weighting is computed in **linear**, ensuring domain consistency.
+**How the weighting works (two variants):**
+- From **linear-scale** VH/VV, we normalize each pixel to $\[0,1\]$ and compute
+  $\( w_c = \exp(1 - \tilde{x}_c) \)$ for channel $\( c \in \{ \mathrm{VH}, \mathrm{VV} \} \)$.
+- We then aggregate per-pixel weights to patch/token weights and scale the token-wise MSE.
+
+**Variants**
+1. **Per-channel weighting:** use $\( w_{\mathrm{VH}} \)$ for VH tokens and $\( w_{\mathrm{VV}} \)$ for VV tokens.
+2. **Shared-avg weighting:** use a single map $\( w = \tfrac{1}{2}(w_{\mathrm{VH}} + w_{\mathrm{VV}}) \)$ for both channels.
+
+**Domain policy:** inputs to the encoder are **in dB**, while weighting is computed **in linear** for consistency with the physical backscatter scale.
 
 ## Highlights
 - Swin + MixMIM/MixMAE pretraining with mask ratio `r = 0.5`, input `2×128×128 (VH, VV)`.
