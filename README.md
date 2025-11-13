@@ -139,9 +139,31 @@ python main_finetune.py -h
 ### Finetuning
 Per-GPU batch `128` (global `128 × 8 GPUs = 1024`), 50 epochs
 
-## Checkpoints
-Release artifacts (pretrained weights and fine‑tuned heads) will be added as GitHub Releases.
-TODO: After uploading, update this section with links and example `--finetune` usage.
+## Pretrained & Finetuned Checkpoints
+
+| Dataset / Task / Split | File | SHA-256 |
+|---|---|---|
+| BENv1 (pretrain, 64 ep) | [`benv1_pretrain_checkpoint_64.pth`](https://drive.google.com/file/d/1wGrfp-NVqW_RD2HwzSL1WgpLi-Hwfwj8/view?usp=sharing) | `b4f385f96a1eef96c8b32768b57cee79060fe3d920c7273e2c70e43cc1c90700` |
+| BENv1 → (finetune) | [`benv1_finetune_checkpoint_best.pth`](https://drive.google.com/file/d/1upoYLnUod6-whUE1xSrrRaIVvvLlTq-A/view?usp=sharing) | `3778df30224903644d772d151a086d4a1bb006ab61c55ac6534ecb00fe3ae083` |
+| BENv2 (pretrain, 64 ep) | [`benv2_pretrain_checkpoint_64.pth`](https://drive.google.com/file/d/1zJdnCKmWJOjUFvOS6kOczFkR1x99KIbH/view?usp=sharing) | `13ab3855a2faee9dc1ca0fb50ba483cc4e0d735b9fc8d1f03e75764c356d0b93` |
+| BENv2 → (finetune) | [`benv2_finetune_checkpoint_best.pth`](https://drive.google.com/file/d/19jHfitDjVQ2ogHCHetyRXqLt0XfqIBDx/view?usp=sharing) | `9592399dcc5f34f608a4b558f897a919d4dd4feb06fc975c108e8f4191689c18` |
+| SEN12-FLOOD (finetune) | [`sen12_finetune_checkpoint_best.pth`](https://drive.google.com/file/d/1wIKk7sY7eZldyE8RggrynJj3u4tetETT/view?usp=sharing) | `33d06401a433191233322a24c551145e53622b6702b4fa9d6d0178cd2392c541` |
+
+> **Notes**
+> - These are `.pth` state dicts to reproduce the reported results.
+> - For reproducibility, verify the SHA-256 hashes after download.
+> - For SEN12FLOOD, we *initialize* from `benv1_pretrain_checkpoint_64.pth`. See `README_sen12.md`.
+
+### (Optional) Verify Integrity
+
+**Linux / WSL (recommended):**
+```bash
+# verify all files listed in CHECKSUMS.txt (OK / FAILED)
+sha256sum -c CHECKSUMS.txt --ignore-missing
+
+# or single file verification as follows
+shasum -a 256 benv1_finetune_checkpoint_best.pth
+```
 
 ---
 
