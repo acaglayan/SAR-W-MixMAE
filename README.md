@@ -28,10 +28,10 @@ SAR-W-MixMAE/
 
   sarwmix/                  # all original utilities — MIT
     bigearthnetv1.py, bigearthnetv2.py, helper.py,
-    sen12_clean_data.py, sen12_data_alignment.py, sen12_data_prep.py,
-    sen12_dataset_utils.py, sen12flood_loader.py, weighting.py
+    sen12_align_s1_to_s2.py, sen12_data_prep.py, sen12_prune_partial_pairs.py,
+    sen12flood_loader.py, weighting.py
 
-  scripts/                  # training/eval scripts for local environment and ABCI server environment (MIT)
+  scripts/                  # training/eval scripts for local environment and ABCI server environment, SEN12FLOOD dataset preparation script (MIT)
   datasets/                 # CSVs/splits as needed (MIT)
   LICENSES/                 # MIT.txt, NOASSERTION.txt
   NOTICE                    # provenance + permission note
@@ -39,6 +39,8 @@ SAR-W-MixMAE/
   CITATION.cff
   requirements.txt
   INSTALL.md
+  README_benv1.md
+  README_sen12.md
   README.md
 ```
 
@@ -80,13 +82,23 @@ pip install -r requirements.txt
 - Use `sarwmix/bigearthnetv1.py` and train/val/test splits together with labels in `datasets/`.
 - **Migration guide:** see [README_benv1.md](README_benv1.md).
 
-### SEN12‑FLOOD (fine‑tuning only)
-- Finetune with inputs in **dB** (log10), but compute polarization weights in **linear**.
-- Use: `sarwmix/sen12flood_loader.py` and helper scripts
-  (`sen12_data_alignment.py`, `sen12_data_prep.py`, `sen12_dataset_utils.py`).
+### SEN12-FLOOD (fine-tuning only)
 
-**Normalization policy:** Use BEN **dB‑domain** channel stats during finetuning for distribution consistency with pretraining.
+- **what**: binary flood detection on pairwise SAR (VV/VH) inputs. each sample has two timepoints  
+`(img1 = non-flood, img2 = flood | non-flood)`, shaped `(2 × 2 × 512 × 512)`. default `--patch_op avg`.
 
+- **data prep**: run `scripts/prepare_sen12flood.sh` (zip or raw-root). it performs:
+1) unzip (if zip given) → 2) align S1→S2 grid → 3) build pairs → 4) clean partial-coverage pairs.  
+outputs: `CURATED_SEN12FLOOD/{train,test}` and prints class counts. requires **gdal**.  
+full guide: [`README_sen12.md`](./README_sen12.md).
+
+- **normalization (dB, keep BENv1 stats)**  
+`mean = [-19.2309, -12.5951]`  
+`std  = [  3.1672,   2.9644]`
+
+- **checkpoints**: finetune from **BENv1** pretraining, e.g.  
+`--finetune $MODELs_PATH/PRETr_CKPTs_LOGs/benv1_rand_pretrain_base/checkpoint_64.pth`
+- **See full migration guide:** at [README_sen12.md](README_sen12.md).
 ---
 
 ## Training
