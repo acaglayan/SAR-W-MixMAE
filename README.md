@@ -14,28 +14,38 @@ It builds on MixMIM/MixMAE with a Swin backbone and introduces **per‑pixel pol
 ## Repository Layout
 ```
 SAR-W-MixMAE/
-  main_pretrain.py          # modified from MixMIM (NOASSERTION)
-  main_finetune.py          # modified from MixMIM (NOASSERTION)
-  engine_pretrain.py        # modified from MixMIM (NOASSERTION)
-  engine_finetune.py        # modified from MixMIM (NOASSERTION)
-  models_mixmim.py          # modified from MixMIM (NOASSERTION)
-  models_mixmim_ft.py       # modified from MixMIM (NOASSERTION)
-  models_sen12_ft.py        # new, derived from MixMIM FT (NOASSERTION)
+  main_pretrain.py            # modified from MixMIM (NOASSERTION)
+  main_finetune.py            # modified from MixMIM (NOASSERTION)
+  engine_pretrain.py          # modified from MixMIM (NOASSERTION)
+  engine_finetune.py          # modified from MixMIM (NOASSERTION)
+  models_mixmim.py            # modified from MixMIM (NOASSERTION)
+  models_mixmim_ft.py         # modified from MixMIM (NOASSERTION)
+  models_sen12_ft.py          # new, derived from MixMIM FT (NOASSERTION)
 
-  util/                     # upstream MixMIM files (verbatim or lightly modified) — NOASSERTION
+  util/                       # upstream MixMIM files (verbatim or lightly modified) — NOASSERTION
     pos_embed.py (verbatim), lr_sched.py (verbatim), lr_decay.py (verbatim),
     datasets.py (verbatim), crop.py (verbatim), misc.py (modified), README.md
 
-  sarwmix/                  # all original utilities — MIT
+  sarwmix/                    # all original utilities — MIT
     bigearthnetv1.py, bigearthnetv2.py, helper.py,
     sen12_align_s1_to_s2.py, sen12_data_prep.py, sen12_prune_partial_pairs.py,
     sen12flood_loader.py, weighting.py
 
-  scripts/                  # training/eval scripts for local environment and ABCI server environment, SEN12FLOOD dataset preparation script (MIT)
-  datasets/                 # CSVs/splits as needed (MIT)
-  LICENSES/                 # MIT.txt, NOASSERTION.txt
-  NOTICE                    # provenance + permission note
-  THIRD_PARTY.md            # file-by-file mapping table
+  scripts/                    # all original runner scripts — MIT
+    qsub_run.sh, run_local.sh # runners for ABCI/local
+    prepare_sen12flood.sh     # SEN12FLOOD end-to-end prep (align→pair→clean)
+
+  analysis/                   # log parsing, metrics, and figure helpers — MIT
+    exponential_2_n_epoch.py
+    exponential_2_n_training.py
+    logfile_reader.py
+    logfile_time_process.py
+    train_data_sampling.py
+
+  datasets/                   # CSVs/splits and metadata (e.g., S1list.json) — MIT
+  LICENSES/                   # MIT.txt, NOASSERTION.txt
+  NOTICE                      # provenance + permission note
+  THIRD_PARTY.md              # file-by-file mapping table
   CITATION.cff
   requirements.txt
   INSTALL.md
