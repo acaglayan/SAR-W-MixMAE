@@ -141,7 +141,7 @@ Per-GPU batch `128` (global `128 × 8 GPUs = 1024`), 50 epochs
 
 ## Pretrained & Finetuned Checkpoints
 
-| Dataset / Task / Split | File | SHA-256 |
+| Dataset / Task | File | SHA-256 |
 |---|---|---|
 | BENv1 (pretrain, 64 ep) | [`benv1_pretrain_checkpoint_64.pth`](https://drive.google.com/file/d/1wGrfp-NVqW_RD2HwzSL1WgpLi-Hwfwj8/view?usp=sharing) | `b4f385f96a1eef96c8b32768b57cee79060fe3d920c7273e2c70e43cc1c90700` |
 | BENv1 → (finetune) | [`benv1_finetune_checkpoint_best.pth`](https://drive.google.com/file/d/1upoYLnUod6-whUE1xSrrRaIVvvLlTq-A/view?usp=sharing) | `3778df30224903644d772d151a086d4a1bb006ab61c55ac6534ecb00fe3ae083` |
