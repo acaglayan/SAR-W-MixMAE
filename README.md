@@ -146,7 +146,7 @@ TODO: After uploading, update this section with links and example `--finetune` u
 ---
 
 ## Citation
-If you find this work useful, please cite the paper (see [`CITATION.cff`](`CITATION.cff`)).
+If you find this work useful, please cite the paper (see [`CITATION.cff`](CITATION.cff)).
 
 ---
 
