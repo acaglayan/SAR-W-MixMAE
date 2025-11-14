@@ -57,7 +57,6 @@ SAR-W-MixMAE/
   LICENSES/                   # MIT.txt, NOASSERTION.txt
   NOTICE                      # provenance + permission note
   THIRD_PARTY.md              # file-by-file mapping table
-  CITATION.cff
   requirements.txt
   INSTALL.md
   README_benv1.md
@@ -177,7 +176,7 @@ shasum -a 256 benv1_finetune_checkpoint_best.pth
 ---
 
 ## Citation
-If you find this work useful, please cite the paper (see [`CITATION.cff`](CITATION.cff)).
+If you find this work useful, please cite the following papers.
 
 ```bibtex
 @inproceedings{caglayan2025igarss,
