@@ -180,7 +180,7 @@ If you find this work useful, please cite the following papers.
 
 ```bibtex
 @inproceedings{caglayan2025igarss,
-  title     = {{SAR-W-MixMAE: SAR Foundation Model Training Using Backscatter Power Weighting}},
+  title     = {SAR-W-MixMAE: SAR Foundation Model Training Using Backscatter Power Weighting},
   author    = {Caglayan, Ali and Imamoglu, Nevrez and Kouyama, Toru},
   month     = {August},
   year      = {2025},
