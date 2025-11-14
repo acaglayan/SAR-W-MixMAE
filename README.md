@@ -179,6 +179,15 @@ shasum -a 256 benv1_finetune_checkpoint_best.pth
 ## Citation
 If you find this work useful, please cite the paper (see [`CITATION.cff`](CITATION.cff)).
 
+```bibtex
+@inproceedings{caglayan2025igarss,
+  title     = {{SAR-W-MixMAE: SAR Foundation Model Training Using Backscatter Power Weighting}},
+  author    = {Caglayan, Ali and Imamoglu, Nevrez and Kouyama, Toru},
+  month     = {August},
+  year      = {2025},
+  booktitle = {IGARSS 2025 - 2025 IEEE International Geoscience and Remote Sensing Symposium},
+}
+```
 ---
 
 ## License & Provenance
