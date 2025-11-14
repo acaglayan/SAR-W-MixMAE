@@ -5,17 +5,18 @@
 # ------------------------------------------------------------------------
 
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 
+set +u    # temporarily turn off bash’s “error on unset vars”
 ### conda: load shell functions, then activate env
-if [ -f "/home/<USER_ID>/miniconda/etc/profile.d/conda.sh" ]; then
+if [ -f "/home/<USER_ID>/anaconda3/etc/profile.d/conda.sh" ]; then
   # shellcheck disable=SC1091
-  source "/home/<USER_ID>/miniconda/etc/profile.d/conda.sh"
+  source "/home/<USER_ID>/anaconda3/etc/profile.d/conda.sh"
 else
-  eval "$(/home/<USER_ID>/miniconda/bin/conda shell.bash hook)"
+  eval "$(/home/<USER_ID>/anaconda3/bin/conda shell.bash hook)"
 fi
-conda activate /home/<USER_ID>/miniconda/envs/sarwmix
-
+conda activate /home/<USER_ID>/anaconda3/envs/sarwmix
+set -u    # turn it back on
 # -----------------------------
 # SEN12FLOOD end-to-end prep:
 #  1) unzip (if a zip is given)
