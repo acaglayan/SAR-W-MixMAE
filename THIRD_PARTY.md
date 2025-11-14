@@ -23,11 +23,10 @@ All other files (below) are original to this repository and licensed under **MIT
 - sarwmix/bigearthnetv1.py
 - sarwmix/bigearthnetv2.py
 - sarwmix/helper.py
-- sarwmix/sen12_clean_data.py
-- sarwmix/sen12_data_alignment.py
+- sarwmix/sen12_align_s1_to_s2.py
 - sarwmix/sen12_data_prep.py
-- sarwmix/sen12_dataset_utils.py
+- sarwmix/sen12_prune_partial_pairs.py
 - sarwmix/sen12flood_loader.py
 - sarwmix/weighting.py
-- scripts/*, datasets/* (as applicable)
+- analysis/*, scripts/*, datasets/* (as applicable)
 
