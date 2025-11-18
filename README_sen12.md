@@ -72,12 +72,7 @@ File Types:
 
 ## 2) Extra dependency
 
-Data prep uses **GDAL** (Rasterio is already in the project). Install GDAL into your env:
-
-```bash
-# conda (recommended)
-conda install -c conda-forge gdal
-```
+Data prep uses **GDAL** (Rasterio is already in the project). Install GDAL into your env.
 
 ---
 
