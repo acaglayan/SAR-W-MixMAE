@@ -36,7 +36,7 @@ from torchvision.transforms import transforms
 from sarwmix.bigearthnetv2 import BigEarthNetv2
 
 import util.lr_decay as lrd
-
+import torch.distributed as dist
 import util.misc as misc
 import sarwmix.helper as helper
 from util.datasets import build_dataset
@@ -146,7 +146,7 @@ def get_args_parser():
                         help='Perform evaluation only')
     parser.add_argument('--dist_eval', action='store_true', default=False,
                         help='Enabling distributed evaluation (recommended during training for faster monitor')
-    parser.add_argument('--num_workers', default=10, type=int)
+    parser.add_argument('--num_workers', default=2, type=int)
     parser.add_argument('--pin_mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no_pin_mem', action='store_false', dest='pin_mem')
@@ -351,7 +351,12 @@ def main(args):
 
         test_stats = evaluate(data_loader_test, model, device)
         print(f"Average precision macro of the network on the {len(dataset_test)} test images: {test_stats['avr_prc_macro']:.3f}%")
-        exit(0)
+        
+        # clean shutdown of distributed
+        if args.distributed and dist.is_initialized():
+            dist.barrier()
+            dist.destroy_process_group()
+        return
 
     use_ceph = args.resume.startswith('s3:')
     print(f"Start training for {args.epochs} epochs")
@@ -520,6 +525,12 @@ def main(args):
     )
     print("Best Results Summary: Epoch {}".format(best_epoch))
     print("\n" + table)
+    
+    # clean shutdown of distributed training
+    if args.distributed and dist.is_initialized():
+        # make sure all ranks finished logging / saving
+        dist.barrier()
+        dist.destroy_process_group()
 
 
 if __name__ == '__main__':
