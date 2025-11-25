@@ -31,7 +31,7 @@ from torchvision.utils import save_image
 import torchvision.transforms.functional as F
 
 import timm.optim.optim_factory as optim_factory
-
+import torch.distributed as dist
 import util.misc as misc
 from sarwmix.bigearthnetv2 import BigEarthNetv2
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
@@ -357,7 +357,7 @@ def get_args_parser():
 
     parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                         help='start epoch')
-    parser.add_argument('--num_workers', default=8, type=int)
+    parser.add_argument('--num_workers', default=2, type=int)
     parser.add_argument('--pin_mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no_pin_mem', action='store_false', dest='pin_mem')
@@ -568,6 +568,12 @@ def main(args):
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print('Training time {}'.format(total_time_str))
+
+    # clean shutdown of distributed training
+    if args.distributed and dist.is_initialized():
+        # make sure all ranks finished logging / saving
+        dist.barrier()
+        dist.destroy_process_group()
 
 
 if __name__ == '__main__':
