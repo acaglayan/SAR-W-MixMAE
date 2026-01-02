@@ -179,15 +179,26 @@ shasum -a 256 benv1_finetune_checkpoint_best.pth
 If you find this work useful, please cite the following papers.
 
 ```bibtex
+@article{caglayan2026jstars,
+  title     = {SAR-W-MixMAE: Polarization-Aware Self-Supervised Pretraining for Masked Autoencoders on SAR Data},
+  author    = {Caglayan, Ali and Imamoglu, Nevrez and Kouyama, Toru},
+  journal   = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
+  volume    = {?},
+  pages     = {?--?},
+  year      = {2026},
+  publisher = {IEEE}
+}
+```
+```bibtex
 @inproceedings{caglayan2025igarss,
   title     = {SAR-W-MixMAE: SAR Foundation Model Training Using Backscatter Power Weighting},
   author    = {Caglayan, Ali and Imamoglu, Nevrez and Kouyama, Toru},
   month     = {August},
   year      = {2025},
+  pages     = {265-269},
   booktitle = {IGARSS 2025 - 2025 IEEE International Geoscience and Remote Sensing Symposium},
 }
 ```
----
 
 ## License & Provenance
 - **Original files** in `sarwmix/`, `scripts/`, `datasets/` → **MIT** (see [`LICENSES/MIT.txt`](LICENSES/MIT.txt)).  
