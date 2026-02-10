@@ -183,7 +183,8 @@ If you find this work useful, please cite the following papers.
   title     = {SAR-W-MixMAE: Polarization-Aware Self-Supervised Pretraining for Masked Autoencoders on SAR Data},
   author    = {Caglayan, Ali and Imamoglu, Nevrez and Kouyama, Toru},
   journal   = {IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing},
-  pages     = {1--12},
+  volume    = {19},
+  pages     = {5590-5601},
   year      = {2026},
   publisher = {IEEE},
   doi       = {10.1109/JSTARS.2026.3652404}
